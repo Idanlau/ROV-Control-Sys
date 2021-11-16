@@ -1,0 +1,49 @@
+<h1>Hello</h1>
+ <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+<script>
+console.log('123');
+ document.addEventListener('keydown', (event) => {
+     var name = event.key;
+     var code = event.code;
+
+     $.ajax({
+         type: "POST",
+         url: '/control/',
+         data: {
+             'key': name,
+             'csrfmiddlewaretoken': '{{ csrf_token }}'
+         },
+         dataType: "json",
+         success: function (response) {
+             if (response.result == 'ok') {
+                 alert(response.message);
+             } else {
+                 alert('Failed');
+             }
+         }
+     })
+ })
+
+   /** alert(`Key pressed ${name} \r\n Key code value: ${code}`);
+}, false); **/
+
+
+    /**$.ajax({
+    type: "POST",
+    url: '/control/',
+    data: {
+      'key': name,
+      'csrfmiddlewaretoken': '{{ csrf_token }}'
+    },
+    dataType: "json",
+    success: function(response) {
+      if (response.result == 'ok') {
+        alert(response.message);
+      } else {
+        alert('Failed');
+      }
+    }
+  }); **/
+
+</script>

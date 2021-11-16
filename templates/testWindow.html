@@ -1,0 +1,47 @@
+<h1>Test Window</h1>
+
+<script>
+document.addEventListener('keydown',makeRequest);
+
+
+
+function makeRequest(event) {
+    httpRequest = new XMLHttpRequest();
+
+    //httpRequest.onreadystatechange = event.key;
+
+    httpRequest.open("POST", '/test/', true);
+
+   function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    console.log(decodedCookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+    var csrftoken = getCookie('csrftoken');
+
+
+    httpRequest.setRequestHeader("X-CSRFToken",csrftoken);
+    httpRequest.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    //httpRequest.send({"data":event.key,"csrfmiddlewaretoken": csrf_token,});
+    alert(event.key);
+    httpRequest.send(event.key);
+}
+
+
+
+
+
+</script>
