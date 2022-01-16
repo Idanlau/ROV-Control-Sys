@@ -16,8 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from Control.views import control_view,test_view
+from ML.views import AI
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('control/',control_view),
-    path('test/',test_view)
+    path('test/',test_view),
+    path('AI/',AI)
 ]
